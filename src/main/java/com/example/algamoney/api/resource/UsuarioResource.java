@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.algamoney.api.modelo.Usuario;
 import com.example.algamoney.api.repository.UsuarioRepository;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping("/usuarios")
+@Api(value = "Usuários")
 public class UsuarioResource {
 
 	@Autowired
