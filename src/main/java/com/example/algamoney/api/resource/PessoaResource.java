@@ -9,31 +9,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.algamoney.api.modelo.Usuario;
-import com.example.algamoney.api.repository.UsuarioRepository;
+import com.example.algamoney.api.modelo.Pessoa;
+import com.example.algamoney.api.repository.PessoaRepository;
 
 import io.swagger.annotations.Api;
 
 @RestController
-@RequestMapping("/usuarios")
-@Api(value = "Usuários")
-public class UsuarioResource {
+@RequestMapping("/pessoas")
+@Api(value = "pessoa")
+public class PessoaResource {
 
 	@Autowired
-	UsuarioRepository usuarioRepository;
+	PessoaRepository PessoaRepository;
 
 	@GetMapping
-	private ResponseEntity<List<Usuario>> buscarTodos() {
+	private ResponseEntity<List<Pessoa>> buscarTodos() {
 
-		List<Usuario> listaUsuarios = usuarioRepository.findAll();
+		List<Pessoa> listaPessoas = PessoaRepository.findAll();
 
-		return listaUsuarios.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(listaUsuarios);
+		return listaPessoas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(listaPessoas);
 	}
 
 	@PostMapping
-	private Usuario criar() {
+	private void criar() {
 
-		return new Usuario();
 	}
 
 }

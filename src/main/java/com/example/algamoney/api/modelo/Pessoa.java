@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuario", schema = "algamoneyapi")
-public class Usuario implements Serializable {
+@Table(name = "Pessoa", schema = "algamoneyapi")
+public class Pessoa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,10 +32,10 @@ public class Usuario implements Serializable {
 	@Column(name = "cpf")
 	private String cpf;
 
-	public Usuario() {
+	public Pessoa() {
 	}
 
-	public Usuario(Long codigo, String nome, String email, String telefone, String cpf) {
+	public Pessoa(Long codigo, String nome, String email, String telefone, String cpf) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
