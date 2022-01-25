@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,15 +35,15 @@ public class PessoaResource {
 	@Autowired
 	PessoaRepository pessoaRepository;
 
-	@ApiOperation(value = "Consulta todas as pessoas")
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Consulta todas as pessoas")
 	private ResponseEntity<List<Pessoa>> readAll() {
 		List<Pessoa> listaPessoas = pessoaRepository.findAll();
 		return listaPessoas.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(listaPessoas);
 	}
 
-	@ApiOperation(value = "Consulta uma pessoa por id")
 	@GetMapping(value = "/{codigo}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Consulta uma pessoa por id")
 	private ResponseEntity<Pessoa> read(@PathVariable Long codigo) {
 		Optional<Pessoa> pessoa = pessoaRepository.findById(codigo);
 		return pessoa.isPresent() ? ResponseEntity.ok(pessoa.get()) : ResponseEntity.noContent().build();
@@ -58,6 +59,13 @@ public class PessoaResource {
 				.buildAndExpand(pessoaSalva.getCodigo()).toUri();
 		response.setHeader("Location", uri.toASCIIString());
 		return ResponseEntity.created(uri).body(pessoaSalva);
+	}
+
+	@DeleteMapping("/{codigo}")
+	@ApiOperation(value = "Cria uma pessoa")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void remover(@PathVariable Long codigo) {
+		pessoaRepository.deleteById(codigo);
 	}
 
 }
