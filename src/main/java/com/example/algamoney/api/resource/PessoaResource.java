@@ -62,7 +62,7 @@ public class PessoaResource {
 	}
 
 	@DeleteMapping("/{codigo}")
-	@ApiOperation(value = "Cria uma pessoa")
+	@ApiOperation(value = "Remove uma pessoa")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
 		pessoaRepository.deleteById(codigo);
